@@ -9,6 +9,12 @@
     - [List Rendering : v-for](#list-rendering--v-for)
     - [Computed Property](#computed-property)
   - [Lifecycle and Template Refs](#lifecycle-and-template-refs)
+  - [Watchers](#watchers)
+  - [Component](#component)
+  - [Props](#props)
+  - [Emits](#emits)
+  - [Slots](#slots)
+- [Vuex](#vuex)
 
 
 ## Declarative Rendering  
@@ -127,4 +133,100 @@ lifecycle hook
 - 컴포넌트 라이프사이클의 특정 순간에 호출될 콜백을 정의할 수 있게 함   
 - create, update 라는 다른 훅도 존재  
 
-[Vue document: Lifecycle Diagram](https://vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram)
+[Vue document: Lifecycle Diagram](https://vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram)  
+
+
+## Watchers  
+반응하는 요소와 함께 side effect 부가적인 일을 해야할 때 사용 (ex. logging)   
+watch 옵션 이용  
+```javascript
+export default {
+  data() {
+    return {
+      count: 0
+    }
+  },
+  watch: {
+    count(newCount) {
+      // yes, console.log() is a side effect
+      console.log(`new count is: ${newCount}`)
+    }
+  }
+}
+```  
+watch 콜백은 count 값이 변했을 때 호출됨  
+- newCount 변수로 변한 값을 가져옴  
+- 관찰하려는 컴포넌트의 state 이름에 ()을 붙여 함수형태로 만들어야함   
+
+[Vue document: Watchers](https://vuejs.org/guide/essentials/watchers.html)  
+
+
+## Component  
+다른 컴포넌트를 자식 컴포넌트로써 사용 가능  
+
+(1) import 를 이용해서 가져온다  
+(2) components 옵션을 이용해서 컴포넌트를 등록   
+    - 여러개일 때, object 안에 나열하여 사용 가능  
+    - 여기서는 object property shorthand 사용 (object 의 키만 나열)  
+(3) template 안에서 사용 가능  
+
+```javascript
+import ChildComp from './ChildComp.vue'
+
+export default {
+  components: {
+    ChildComp
+  }
+}
+```  
+
+## Props  
+child 컴포넌트는 부모 컴포넌트로부터 props 를 이용하여 인풋을 받을 수 있음  
+
+(1) 자식 컴포넌트는 전달받을 props 를 정의해야 함  
+```javascript
+export default {
+  props: {
+    msg: String  // template 에서 this.msg 로 접근 가능 
+  }
+}
+```
+
+(2) 부모 컴포넌트는 attribute 를 정의해서 전달 가능 (dynamic value 를 전달하기 위해서 v-bind 를 사용)   
+```html
+<ChildComp :msg="greeting" />
+```  
+
+## Emits  
+자식 컴포넌트가 부모 컴포넌트에게 이벤트를 emit 방출할 수 있음  
+```javascript
+export default {
+  // declare emitted events
+  emits: ['response'],
+  created() {
+    // emit with argument
+    // this.$emit(event name, 이벤트 리스너에 전달할 부가적인 인자)
+    this.$emit('response', 'hello from child')
+  }
+}
+```
+부모 컴포넌트는 자식이 방출한 이벤트를 v-on 을 이용하여 받을 수 있음  
+- 여기서 이벤트 핸들러는 자식 컴포넌트에서 방출되는 부가적인 인자를 받아서 처리해야 함  
+
+
+## Slots  
+부모 컴포넌트가 템플릿의 일부를 자식 컴포넌트에게 전달하는 방법  
+- 자식 컴포넌트의 템플릿에서 slot 을 이용하여 사용 가능  
+
+```html
+<slot/>
+<slot>전달받은 것이 없을 때</slot>  
+```
+
+
+# Vuex
+state management library  
+애플리케이션의 컴포넌트 사이에 데이터를 공유하기 위해 사용함  
+(중앙 데이터 저장소)  
+
+vuex lifecyle  
