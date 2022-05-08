@@ -6,8 +6,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/HomeView.vue')
+    redirect: '/home'
   },
   {
     path: '/home',
@@ -23,7 +22,11 @@ const routes = [
     path: '/list',
     name: 'list',
     component: () => import('@/views/ListView.vue')
-  }
+  },
+  {
+    path: '*',
+    component: () => import('@/views/NotFoundView.vue')
+  },
 ]
 
 const router = new VueRouter({
