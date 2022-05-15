@@ -10,10 +10,4 @@ const createAxios = () => {
 
 const axiosService = createAxios();
 
-const getList = () => {
-  return axiosService.get('list');
-}
-
-export {
-  getList
-};
+export default axiosService;

@@ -1,32 +1,40 @@
 <template>
-  <div class="list">
-    <h1>Test for mock api</h1>
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>이름</th>
-            <th>나이</th>
-            <th>도시</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr :key="index" v-for="(person, index) in peopleList">
-            <td>{{ person.name }}</td>
-            <td>{{ person.age }}</td>
-            <td>{{ person.city }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <home-layout>
+    <v-container>
+      <div class="list">
+        <h1>Test for mock api</h1>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>도시</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr :key="index" v-for="(person, index) in peopleList">
+                <td>{{ person.name }}</td>
+                <td>{{ person.age }}</td>
+                <td>{{ person.city }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </v-container>
+  </home-layout>
 </template>
 
 <script>
-import { getList } from "@/api";
+import HomeLayout from "@/components/layouts/home/index.vue";
+import { getList } from "@/api/list";
 import { saveUserToCookie } from "@/utils/cookies";
 
 export default {
+  components: {
+    HomeLayout,
+  },
   data() {
     return {
       peopleList: [],
@@ -41,7 +49,6 @@ export default {
       this.peopleList = data;
       this.$store.commit("setUsername", this.peopleList[0].name);
       saveUserToCookie(this.peopleList[0].name);
-      console.log(this.peopleList);
     },
   },
 };

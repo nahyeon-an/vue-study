@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app absolute permanent left clipped>
+  <v-navigation-drawer app absolute permanent left clipped expand-on-hover>
     <template v-slot:prepend>
       <v-list-item two-line>
         <v-list-item-avatar>
@@ -55,6 +55,19 @@
         <v-list-item-content>
           <v-list-item-title>
             <router-link to="/list"> List </router-link>
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-list-item>
+        <!-- Login -->
+        <v-list-item-icon>
+          <v-icon>{{ "mdi-account-group-outline" }}</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>
+            <router-link to="/login"> Login </router-link>
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>

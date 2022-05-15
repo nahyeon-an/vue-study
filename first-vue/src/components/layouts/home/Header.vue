@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="primary" dark clipped-left>
+  <v-app-bar app color="teal lighten-3" dark clipped-left flat>
     <div class="d-flex align-center">
       <h1 class="hidden-sm-and-down">Example</h1>
     </div>

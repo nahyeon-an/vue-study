@@ -1,16 +1,12 @@
 <template>
   <v-app>
-    <Header />
-    <Sidenav />
-    <v-main>
-      <router-view />
-    </v-main>
+    <router-view />
   </v-app>
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import Sidenav from "@/components/Sidenav.vue";
+import Header from "@/components/layouts/home/Header.vue";
+import Sidenav from "@/components/layouts/home/Sidenav.vue";
 
 export default {
   name: "App",
