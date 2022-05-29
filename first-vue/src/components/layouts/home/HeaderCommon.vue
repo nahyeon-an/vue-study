@@ -1,11 +1,24 @@
 <template>
-  <v-app-bar app color="teal lighten-3" dark clipped-left flat>
-    <sidenav-menu :drawer="drawer"></sidenav-menu>
-    <v-toolbar color="primary" dark fixed app>
-      <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-toolbar>
+  <v-app-bar app color="teal lighten-3" dark fixed>
+    <sidenav-menu :propDrawer="drawer"></sidenav-menu>
+    <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+    <!-- <v-navigation-drawer v-model="drawer" fixed app>
+      <v-toolbar flat dark color="success">
+        <v-list>
+          <v-list-item> Simply Clinical Software </v-list-item>
+        </v-list>
+      </v-toolbar>
+      <v-list dense>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>{{ "mdi-home-city" }}</v-icon>
+          </v-list-item-icon>
+          <router-link to="/login"> Login </router-link>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer> -->
+    <v-toolbar-title>Application</v-toolbar-title>
   </v-app-bar>
 </template>
 
@@ -18,6 +31,11 @@ export default {
     return {
       drawer: false,
     };
+  },
+  watch: {
+    drawer(newDrawer) {
+      console.log(`new drawer : ${newDrawer}`);
+    },
   },
 };
 </script>

@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     username: '',
+    sidebar: false,
   },
   getters: {
     isLogin(state) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
   mutations: {
     setUsername(state, username) {
       state.username = username;
+    },
+    setSidebar(state, sidebar) {
+      state.sidebar = sidebar;
     }
   },
   actions: {
